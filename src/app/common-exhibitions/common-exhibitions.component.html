@@ -1,0 +1,29 @@
+<mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[3, 6, 9, 12]"></mat-paginator>
+
+    <div fxLayout="row wrap" style="width: 100%; height: inherit; padding: 70px; color: white;">
+        <section fxFlex="1 0 1" fxFlexOffset="10px" fxLayoutGap="15px" fxLayoutAlign="center center"
+            *ngFor="let exhibition of obs | async"
+            style="border: 2px solid #e75b1e; background-color: rgba(66, 66, 66, 0.65); padding: 10px;">
+            <!-- Informacije o proizvodima -->
+            <ul style="width: 60%;">
+                <li>Kategorija: {{ exhibition.category }}</li>
+                <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
+                <li>Naziv: {{ exhibition.title }}</li>
+                <li>Cena: {{ exhibition.price | number }} din.</li>
+                <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
+                <li>Opis: {{ exhibition.description }}</li>
+                <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} dan(a)</li>
+                <li fxLayoutAlign="center center" fxLayoutGap="5px">
+                    <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
+                    <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e"
+                        uncheckedcolor="gray" size="24px">
+                    </star-rating>
+                    <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
+                </li>
+
+            </ul>
+        </section>
+    </div>
+
+
+

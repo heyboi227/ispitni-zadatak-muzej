@@ -1,0 +1,29 @@
+<mat-toolbar >
+
+    <div id="nav-list" fxFlex fxLayoutAlign="center center">
+        <ul class="list-items" fxLayout="row" fxLayoutGap="35px">
+            <li><a routerLink="/home" routerLinkActive="active">POČETNA</a></li>
+            <li><a routerLink="/view" routerLinkActive="active">POSTAVKE</a></li>
+            <li><a routerLink="/about" routerLinkActive="active">O NAMA</a></li>
+            <li><a routerLink="/contact" routerLinkActive="active">KONTAKT</a></li>
+        </ul>
+    </div>
+    <div id="nav-list" fxFlex fxLayoutAlign="center center">
+        <ul class="list-items" fxLayout="row" fxLayoutGap="35px">
+            <li *ngIf="!this.userService.isSignedIn" fxLayoutGap="5px">
+                <a routerLink="/signup" routerLinkActive="active">REGISTRACIJA</a>
+            </li>
+            <li *ngIf="!this.userService.isSignedIn" fxLayoutGap="5px">
+                <a routerLink="/login" routerLinkActive="active">PRIJAVA</a>
+            </li>
+        </ul>
+    </div>
+    <div id="logo-buttons" fxLayoutGap="10px" *ngIf="this.userService.isSignedIn">
+        <button mat-raised-button color="primary" (click)="openProfile(this.userService.currentUser.id)">
+            {{ this.userService.currentUser.email }}
+        </button>
+        <button mat-raised-button color="warn" (click)="signOut()">
+            Odjava
+        </button>
+    </div>
+</mat-toolbar>
