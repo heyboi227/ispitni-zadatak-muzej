@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 export interface Exhibition {
   id: number;
-  category: "Stalna" | "Privremena";
+  category: "Stalna postavka" | "Privremena postavka";
   exhibitType: "Knjige" | "Novac" | "Kulturno nasleđe" | "Slike" | "Dokumenti";
   numOfExhibits: number;
   price: number;
@@ -25,7 +25,7 @@ export class ExhibitionService {
   dummyExhibitionList: Array<Exhibition> = [
     {
       id: 1,
-      category: "Stalna",
+      category: "Stalna postavka",
       exhibitType: "Knjige",
       numOfExhibits: 3,
       price: 600,
@@ -37,7 +37,7 @@ export class ExhibitionService {
     },
     {
       id: 2,
-      category: "Privremena",
+      category: "Privremena postavka",
       exhibitType: "Kulturno nasleđe",
       numOfExhibits: 5,
       price: 900,
@@ -49,7 +49,7 @@ export class ExhibitionService {
     },
     {
       id: 3,
-      category: "Stalna",
+      category: "Stalna postavka",
       exhibitType: "Novac",
       numOfExhibits: 4,
       price: 1000,
@@ -61,7 +61,7 @@ export class ExhibitionService {
     },
     {
       id: 4,
-      category: "Privremena",
+      category: "Privremena postavka",
       exhibitType: "Dokumenti",
       numOfExhibits: 3,
       price: 700,
@@ -76,6 +76,11 @@ export class ExhibitionService {
 
 
   constructor() { }
+
+  getPermanentExhibitions(): Exhibition[]{
+    return this.dummyExhibitionList.filter(exhibition => exhibition.category == "Stalna postavka");
+
+  }
 
   getExhibitions(): Exhibition[] {
     return this.dummyExhibitionList;

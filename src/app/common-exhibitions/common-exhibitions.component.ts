@@ -27,7 +27,7 @@ export class CommonExhibitionsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.exhibitionSource.data = this.exhibitionService.getExhibitions();
+    this.exhibitionSource.data = this.exhibitionService.getPermanentExhibitions();
   }
 
   ngAfterViewInit(): void {

@@ -1,18 +1,25 @@
-<mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[3, 6, 9, 12]"></mat-paginator>
+<div style="background-color: white;">
 
-    <div fxLayout="row wrap" style="width: 100%; height: inherit; padding: 70px; color: white;">
-        <section fxFlex="1 0 1" fxFlexOffset="10px" fxLayoutGap="15px" fxLayoutAlign="center center"
-            *ngFor="let exhibition of obs | async"
-            style="border: 2px solid #e75b1e; background-color: rgba(66, 66, 66, 0.65); padding: 10px;">
+    <h1>STALNE POSTAVKE</h1>
+
+    <mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[3, 6, 9, 12]"></mat-paginator>
+
+    <div fxLayout="row wrap">
+
+        <section fxLayout="column" fxFlex="1 0 1" fxLayoutAlign="center center" *ngFor="let exhibition of obs | async">
+            <img *ngIf="exhibition.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
+            <img *ngIf="exhibition.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
+            <img *ngIf="exhibition.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
+            <img *ngIf="exhibition.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
+            <img *ngIf="exhibition.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
             <!-- Informacije o proizvodima -->
-            <ul style="width: 60%;">
-                <li>Kategorija: {{ exhibition.category }}</li>
+            <h2>{{ exhibition.title }}</h2>
+            <ul>
                 <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
-                <li>Naziv: {{ exhibition.title }}</li>
                 <li>Cena: {{ exhibition.price | number }} din.</li>
                 <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
                 <li>Opis: {{ exhibition.description }}</li>
-                <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} dan(a)</li>
+                <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
                 <li fxLayoutAlign="center center" fxLayoutGap="5px">
                     <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
                     <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e"
@@ -24,6 +31,4 @@
             </ul>
         </section>
     </div>
-
-
-
+</div>

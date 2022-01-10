@@ -1,6 +1,6 @@
 <mat-toolbar >
 
-    <div id="nav-list" fxFlex fxLayoutAlign="center center">
+    <div class="nav-list" fxFlex fxLayoutAlign="center center">
         <ul class="list-items" fxLayout="row" fxLayoutGap="35px">
             <li><a routerLink="/home" routerLinkActive="active">POČETNA</a></li>
             <li><a routerLink="/view" routerLinkActive="active">POSTAVKE</a></li>
@@ -8,7 +8,7 @@
             <li><a routerLink="/contact" routerLinkActive="active">KONTAKT</a></li>
         </ul>
     </div>
-    <div id="nav-list" fxFlex fxLayoutAlign="center center">
+    <div class="nav-list" fxFlex fxLayoutAlign="center center">
         <ul class="list-items" fxLayout="row" fxLayoutGap="35px">
             <li *ngIf="!this.userService.isSignedIn" fxLayoutGap="5px">
                 <a routerLink="/signup" routerLinkActive="active">REGISTRACIJA</a>

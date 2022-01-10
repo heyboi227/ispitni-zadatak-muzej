@@ -4,5 +4,10 @@ body {
     margin: 0px !important;
     padding: 0 !important;
     font-family: 'Alegreya', serif;
+    width:100%;
+    /* background-image: url("/assets/pozadina2.jpg");
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat; */
   }
 

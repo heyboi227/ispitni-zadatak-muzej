@@ -1,9 +1,22 @@
 .mat-form-field {
     width: 600px;
   }
+
+  #form-container {
+    width: 100%;
+    height: auto;
+    padding: 35px 0px;
+    background-image: url("/assets/pozadina2.jpg");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
   
   #signup-form {
     height: max-content;
-    margin: 50px;
+    width: max-content;
+    margin: 0 auto;
+    padding: 60px;
+    background-color: rgba(187, 187, 187, 0.9);
   }
   
