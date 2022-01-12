@@ -6,16 +6,11 @@ import { Exhibition, ExhibitionService } from '../exhibition.service';
 import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-common-exhibitions',
-  templateUrl: './common-exhibitions.component.html',
-  styleUrls: ['./common-exhibitions.component.css']
+  selector: 'app-favorite-exhibitions',
+  templateUrl: './favorite-exhibitions.component.html',
+  styleUrls: ['./favorite-exhibitions.component.css']
 })
-
-
-
-
-
-export class CommonExhibitionsComponent implements OnInit {
+export class FavoriteExhibitionsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -27,7 +22,7 @@ export class CommonExhibitionsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.exhibitionSource.data = this.exhibitionService.getPermanentExhibitions();
+    this.exhibitionSource.data = this.exhibitionService.getFavoriteExhibitions();
     this.exhibitionService.sumParameters();
   }
 

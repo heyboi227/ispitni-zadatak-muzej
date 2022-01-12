@@ -26,6 +26,9 @@ import {MatTableModule} from '@angular/material/table';
 import { RatingModule } from 'ng-starrating';
 import { UserService } from './user.service';
 import { ExhibitionService } from './exhibition.service';
+import { ExhibitionsComponent } from './exhibitions/exhibitions.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-exhibitions.component';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { ExhibitionService } from './exhibition.service';
     FooterComponent,
     ProfileComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    ExhibitionsComponent,
+    FavoriteExhibitionsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { ExhibitionService } from './exhibition.service';
     MatInputModule,
     MatPaginatorModule,
     MatTableModule,
-    RatingModule
+    RatingModule,
+    MatCheckboxModule
     
 
   ],

@@ -10,6 +10,7 @@ export interface User {
   surname: string;
   address: string;
   telephone: string;
+  favoriteTypes?: Array<string>;
 }
 
 
@@ -22,8 +23,8 @@ export interface User {
 
 export class UserService {
 
-  currentUser: User = UserService.dummyUserList[0];
-  isSignedIn: boolean = false;
+  currentUser: User = UserService.dummyUserList[1];
+  isSignedIn: boolean = true;
 
   static dummyUserList: Array<User> = [
     {
@@ -43,7 +44,8 @@ export class UserService {
       name: "Mika",
       surname: "Mikić",
       address: "Ružice Sokić 54, Beograd",
-      telephone: "+381637654321"
+      telephone: "+381637654321",
+      favoriteTypes: ["Knjige", "Slike"]
     }
   ];
 
@@ -82,7 +84,7 @@ export class UserService {
 
   //Registrovanje novog korisnika
 
-  registerUser(email: string, password: string, name: string, surname: string, address: string, telephone: string): User {
+  registerUser(email: string, password: string, name: string, surname: string, address: string, telephone: string, favoriteTypes?: Array<string>): User {
 
     var maxId: number = 0;
 
@@ -96,7 +98,8 @@ export class UserService {
 
     var id = ++maxId;
 
-    var user: User = { id, email, password, name, surname, address, telephone };
+    var user: User = { id, email, password, name, surname, address, telephone, favoriteTypes };
+    console.log(user);
 
     UserService.dummyUserList.push(user);
 

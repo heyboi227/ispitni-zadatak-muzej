@@ -32,6 +32,10 @@
       <mat-error *ngIf="phoneInput.hasError('required')">Polje ne bi smelo da bude prazno.</mat-error>
     </mat-form-field>
     <br>
+    <p class="select-type">Izaberite omiljene tipove postavki/eksponata:</p>
+    <div fxLayout="row" fxLayoutGap="25px">
+      <mat-checkbox *ngFor="let check of this.checkValues" [(ngModel)]="check.checked" [value]="check.name" [name]="check.name">{{ check.name }}</mat-checkbox>
+    </div>
     <button type="submit" [disabled]="f.invalid" mat-raised-button color="warn">Registruj se</button>
   </form>
 </div>
