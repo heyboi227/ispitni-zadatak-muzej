@@ -1,47 +1,44 @@
 <div style="background-color: white;">
 
-    <h1>POSTAVKE</h1>
+  <h1>POSTAVKE</h1>
 
-    <div fxLayout="row" fxLayoutAlign="space-between center" style="margin: 0px 10%; padding-bottom: 15px;">
-        <div fxLayoutAlign="center center">
-            <mat-form-field>
-                <input matInput type="text" (input)="doFilter($any($event.target).value)"
-                    placeholder="Filtriranje postavki">
-            </mat-form-field>
-        </div>
-        <mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[3, 6, 9, 12]">
-        </mat-paginator>
+  <div fxLayout="row" fxLayoutAlign="space-between center" style="margin: 0px 10%; padding-bottom: 15px;">
+    <div fxLayoutAlign="center center">
+      <mat-form-field>
+        <input matInput type="text" (input)="doFilter($any($event.target).value)" placeholder="Filtriranje postavki">
+      </mat-form-field>
     </div>
+    <mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[3, 6, 9, 12]">
+    </mat-paginator>
+  </div>
 
-    <div fxLayout="row wrap" fxLayoutAlign="space-between center"
-        style="width: auto; margin: auto 50px; padding: 30px;">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="width: auto; margin: auto 50px; padding: 30px;">
 
-        <section
-            class="exhibition-info" style="width: 400px; padding: 20px; margin: 20px; border-radius: 70px; border: 2px solid black; background-color: whitesmoke;"
-            fxLayout="column" fxLayoutAlign="center center" *ngFor="let exhibition of obs | async">
-            <img *ngIf="exhibition.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
-            <!-- Informacije o proizvodima -->
-            <h2>{{ exhibition.title }}</h2>
-            <ul>
-                <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
-                <li>Cena: {{ exhibition.price | number }} din.</li>
-                <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
-                <li>Opis: {{ exhibition.description }}</li>
-                <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
-                <li fxLayoutAlign="center center" fxLayoutGap="5px">
-                    <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
-                    <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e"
-                        uncheckedcolor="gray" size="24px">
-                    </star-rating>
-                    <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
-                </li>
+    <section class="exhibition-info" fxLayout="column" fxLayoutAlign="center center"
+      *ngFor="let exhibition of obs | async">
+      <img *ngIf="exhibition.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
+      <!-- Informacije o proizvodima -->
+      <h2>{{ exhibition.title }}</h2>
+      <ul>
+        <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
+        <li>Cena: {{ exhibition.price | number }} din.</li>
+        <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
+        <li>Opis: {{ exhibition.description }}</li>
+        <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
+        <li fxLayoutAlign="center center" fxLayoutGap="5px">
+          <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
+          <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
+            size="24px">
+          </star-rating>
+          <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
+        </li>
 
-            </ul>
-            <button mat-raised-button color="primary" *ngIf="this.userService.isSignedIn">Dodaj postavku</button>
-        </section>
-    </div>
+      </ul>
+      <button mat-raised-button color="primary" *ngIf="this.userService.isSignedIn">Dodaj postavku</button>
+    </section>
+  </div>
 </div>
