@@ -10,27 +10,26 @@ import { CommonExhibitionsComponent } from './common-exhibitions/common-exhibiti
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './profile/profile.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { RatingModule } from 'ng-starrating';
 import { UserService } from './user.service';
 import { ExhibitionService } from './exhibition.service';
 import { ExhibitionsComponent } from './exhibitions/exhibitions.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-exhibitions.component';
 import { CartComponent } from './cart/cart.component';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +44,7 @@ import { CartComponent } from './cart/cart.component';
     LoginComponent,
     ExhibitionsComponent,
     FavoriteExhibitionsComponent,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,11 +62,9 @@ import { CartComponent } from './cart/cart.component';
     MatPaginatorModule,
     MatTableModule,
     RatingModule,
-    MatCheckboxModule
-    
-
+    MatCheckboxModule,
   ],
   providers: [UserService, ExhibitionService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

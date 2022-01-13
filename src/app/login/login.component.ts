@@ -6,18 +6,15 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
   errorExists = false;
-  errorText = "";
+  errorText = '';
 
-  constructor(public userService: UserService, private router: Router) { }
+  constructor(public userService: UserService, private router: Router) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   //Prijava korisnika sa podacima iz forme za prijavu
 
@@ -27,27 +24,24 @@ export class LoginComponent implements OnInit {
     var user = this.userService.getUser(email);
     if (!user) {
       this.errorExists = true;
-      this.errorText = "Nema registrovanog korisnika sa zadatim parametrima!";
+      this.errorText = 'Nema registrovanog korisnika sa zadatim parametrima!';
       return;
-
     }
 
     var isPasswordValid = this.userService.isPasswordCorrect(email, password);
 
     if (!isPasswordValid) {
       this.errorExists = true;
-      this.errorText = "Pogrešan unos šifre!";
+      this.errorText = 'Pogrešan unos šifre!';
       return;
     }
 
     this.errorExists = false;
     this.userService.isSignedIn = true;
     this.router.navigate(['']);
-
   }
 
   toSignup() {
     this.router.navigate(['/signup']);
   }
-
 }

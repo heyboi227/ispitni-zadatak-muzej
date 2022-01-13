@@ -1,17 +1,16 @@
-#logo-container{
-    
-    height:150px;
-    padding:30px;
-    background-image: url("/assets/pozadina2.jpg");
-    background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
-    opacity: 0.4;
+#logo-container {
+  height: 150px;
+  padding: 30px;
+  background-image: url("/assets/pozadina2.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  opacity: 0.4;
 }
 
-#logo{
-    position: absolute;
-    top: 105px;
-    left: 50%;
-    transform: translate(-50%, -50%);
+#logo {
+  position: absolute;
+  top: 105px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

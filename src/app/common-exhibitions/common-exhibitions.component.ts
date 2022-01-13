@@ -8,26 +8,25 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-common-exhibitions',
   templateUrl: './common-exhibitions.component.html',
-  styleUrls: ['./common-exhibitions.component.css']
+  styleUrls: ['./common-exhibitions.component.css'],
 })
-
-
-
-
-
 export class CommonExhibitionsComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   obs: Observable<any>;
 
-  exhibitionSource = new MatTableDataSource<Exhibition>(this.exhibitionService.dummyExhibitionList);
+  exhibitionSource = new MatTableDataSource<Exhibition>(
+    this.exhibitionService.dummyExhibitionList
+  );
 
-  constructor(public exhibitionService: ExhibitionService, public userService: UserService) { }
-
+  constructor(
+    public exhibitionService: ExhibitionService,
+    public userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.exhibitionSource.data = this.exhibitionService.getPermanentExhibitions();
+    this.exhibitionSource.data =
+      this.exhibitionService.getPermanentExhibitions();
     this.exhibitionService.sumParameters();
   }
 
@@ -43,10 +42,6 @@ export class CommonExhibitionsComponent implements OnInit {
   }
 
   doFilter(filterValue: string): void {
-
     this.exhibitionSource.filter = filterValue.trim().toLowerCase();
-
   }
-  
-
 }

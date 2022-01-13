@@ -1,55 +1,40 @@
 <section style="height: 800px;">
-
-    <div fxLayout="column" fxLayoutAlign="center center">
-        <h1>KORPA</h1>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1>KORPA</h1>
+  </div>
+  <div>
+    <!--Tekst koji se javlja kada u korpi nema elemenata-->
+    <h2 *ngIf="this.exhibitionService.cartList.length == 0" fxLayoutAlign="center center">Ne postoji nijedna
+      postavka u Vašoj korpi.</h2>
+    <section fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-evenly center"
+      *ngFor="let exhibition of this.exhibitionService.cartList"
+      style="border: 2px solid #000000; padding: 7px; margin: 15px auto; width: 80%; border-radius: 25px;">
+      <!-- Slike koje stoje uz pojedinačne proizvode i pojavljuju se u zavisnosti od tipa proizvoda i dodatnih stavki -->
+      <img *ngIf="exhibition.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
+      <img *ngIf="exhibition.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
+      <!-- Informacije o proizvodima -->
+      <h2 style="width: 20%;">{{ exhibition.title }}</h2>
+      <ul style="list-style-type: none; width: 50%;">
+        <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
+        <li>Cena: {{ exhibition.price | number }} din.</li>
+        <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
+        <li>Opis: {{ exhibition.description }}</li>
+        <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
+      </ul>
+      <!-- Brisanje pojedinačnih jedinica proizvoda iz korpe -->
+      <button mat-raised-button color="primary" (click)="this.exhibitionService.deleteFromCart(exhibition)">Ukloni
+        iz korpe</button>
+    </section>
+    <!-- Brisanje svih elemenata iz korpe, prikaz ukupne cene i dugme za poručivanje -->
+    <div *ngIf="!(this.exhibitionService.cartList.length == 0)">
+      <button mat-raised-button color="warn" fxLayoutAlign="end" style="margin: 0 auto; margin-top: 20px;"
+        (click)="this.exhibitionService.removeAll()">Ukloni sve</button>
+      <h1 fxLayoutAlign="center center">Ukupna cena: {{ this.exhibitionService.cartTotalPrice | number }} din.
+      </h1>
+      <button mat-raised-button color="primary" fxLayoutAlign="end" style="margin: 0 auto;">Rezerviši</button>
     </div>
-    <div>
-
-        <!--Tekst koji se javlja kada u korpi nema elemenata-->
-        <h2 *ngIf="this.exhibitionService.cartList.length == 0" fxLayoutAlign="center center">Ne postoji nijedna
-            postavka u Vašoj korpi.</h2>
-
-        <section fxLayout="row" fxLayoutGap="15px" fxLayoutAlign="space-evenly center"
-            *ngFor="let exhibition of this.exhibitionService.cartList"
-            style="border: 2px solid #000000; padding: 7px; margin: 15px auto; width: 80%; border-radius: 25px;">
-
-            <!-- Slike koje stoje uz pojedinačne proizvode i pojavljuju se u zavisnosti od tipa proizvoda i dodatnih stavki -->
-            <img *ngIf="exhibition.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
-            <img *ngIf="exhibition.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
-
-            <!-- Informacije o proizvodima -->
-            <h2 style="width: 20%;">{{ exhibition.title }}</h2>
-            <ul style="list-style-type: none; width: 50%;">
-                <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
-                <li>Cena: {{ exhibition.price | number }} din.</li>
-                <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
-                <li>Opis: {{ exhibition.description }}</li>
-                <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
-            </ul>
-
-            <!-- Brisanje pojedinačnih jedinica proizvoda iz korpe -->
-
-            <button mat-raised-button color="primary" (click)="this.exhibitionService.deleteFromCart(exhibition)">Ukloni
-                iz korpe</button>
-
-        </section>
-        <!-- Brisanje svih elemenata iz korpe, prikaz ukupne cene i dugme za poručivanje -->
-
-        <div *ngIf="!(this.exhibitionService.cartList.length == 0)">
-
-            <button mat-raised-button color="warn" fxLayoutAlign="end" style="margin: 0 auto; margin-top: 20px;"
-                (click)="this.exhibitionService.removeAll()">Ukloni sve</button>
-
-            <h1 fxLayoutAlign="center center">Ukupna cena: {{ this.exhibitionService.cartTotalPrice | number }} din.
-            </h1>
-
-            <button mat-raised-button color="primary" fxLayoutAlign="end" style="margin: 0 auto;">Rezerviši</button>
-
-        </div>
-
-    </div>
-
+  </div>
 </section>

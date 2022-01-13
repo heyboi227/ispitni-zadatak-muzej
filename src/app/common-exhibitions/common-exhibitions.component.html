@@ -1,7 +1,5 @@
 <div style="background-color: white;">
-
   <h1>STALNE POSTAVKE</h1>
-
   <div fxLayout="row" fxLayoutAlign="space-between center" style="margin: 0px 10%; padding-bottom: 15px;">
     <div fxLayoutAlign="center center">
       <mat-form-field>
@@ -11,9 +9,7 @@
     <mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[3, 6, 9, 12]">
     </mat-paginator>
   </div>
-
   <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width: auto; margin: auto 50px; padding: 30px;">
-
     <section class="exhibition-info" fxLayout="column" fxLayoutAlign="center center"
       *ngFor="let exhibition of obs | async">
       <img *ngIf="exhibition.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">

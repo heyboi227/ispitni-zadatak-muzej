@@ -1,33 +1,35 @@
 .list-items {
-    list-style-type: none;
-    font-size: 25px;
-  }
-  
-  .list-items a, #logo-buttons a, #cart a {
-    text-decoration: none;
-    color: black;
-  }
-  
-  .list-items a:hover,
-  #logo-buttons a:hover,
-  .active {
-    font-weight: bold;
-  }
+  list-style-type: none;
+  font-size: 25px;
+}
 
-  #cart a:hover {
-    color: #e75b1e;
-    
-  }
+.list-items a,
+#logo-buttons a,
+#cart a {
+  text-decoration: none;
+  color: black;
+}
 
-  #cart mat-icon{
-    font-size: 30px;
-    margin-right: 40px;
-  }
+.list-items a:hover,
+#logo-buttons a:hover,
+.active {
+  font-weight: bold;
+}
 
-  .mat-toolbar {
-    font-family: 'Alegreya', serif;
-  }
+#cart a:hover {
+  color: #e75b1e;
 
-  #logo-buttons {
-    width: 40%;
-  }
+}
+
+#cart mat-icon {
+  font-size: 30px;
+  margin-right: 40px;
+}
+
+.mat-toolbar {
+  font-family: 'Alegreya', serif;
+}
+
+#logo-buttons {
+  width: 40%;
+}

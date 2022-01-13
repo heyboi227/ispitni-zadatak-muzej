@@ -8,21 +8,25 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-favorite-exhibitions',
   templateUrl: './favorite-exhibitions.component.html',
-  styleUrls: ['./favorite-exhibitions.component.css']
+  styleUrls: ['./favorite-exhibitions.component.css'],
 })
 export class FavoriteExhibitionsComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   obs: Observable<any>;
 
-  exhibitionSource = new MatTableDataSource<Exhibition>(this.exhibitionService.dummyExhibitionList);
+  exhibitionSource = new MatTableDataSource<Exhibition>(
+    this.exhibitionService.dummyExhibitionList
+  );
 
-  constructor(public exhibitionService: ExhibitionService, public userService: UserService) { }
-
+  constructor(
+    public exhibitionService: ExhibitionService,
+    public userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.exhibitionSource.data = this.exhibitionService.getFavoriteExhibitions();
+    this.exhibitionSource.data =
+      this.exhibitionService.getFavoriteExhibitions();
     this.exhibitionService.sumParameters();
   }
 
@@ -38,9 +42,6 @@ export class FavoriteExhibitionsComponent implements OnInit {
   }
 
   doFilter(filterValue: string): void {
-
     this.exhibitionSource.filter = filterValue.trim().toLowerCase();
-
   }
-
 }

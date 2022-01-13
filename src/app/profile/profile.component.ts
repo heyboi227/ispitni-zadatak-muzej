@@ -6,14 +6,16 @@ import { User, UserService } from '../user.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   isEditing: boolean = false;
   profileForInput: User;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public userService: UserService) { }
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.profileForInput = {
@@ -23,7 +25,7 @@ export class ProfileComponent implements OnInit {
       name: this.data.user.name,
       surname: this.data.user.surname,
       address: this.data.user.address,
-      telephone: this.data.user.telephone
+      telephone: this.data.user.telephone,
     };
   }
 

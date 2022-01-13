@@ -8,18 +8,21 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-exhibitions',
   templateUrl: './exhibitions.component.html',
-  styleUrls: ['./exhibitions.component.css']
+  styleUrls: ['./exhibitions.component.css'],
 })
 export class ExhibitionsComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   obs: Observable<any>;
 
-  exhibitionSource = new MatTableDataSource<Exhibition>(this.exhibitionService.dummyExhibitionList);
+  exhibitionSource = new MatTableDataSource<Exhibition>(
+    this.exhibitionService.dummyExhibitionList
+  );
 
-  constructor(public exhibitionService: ExhibitionService, public userService: UserService) { }
-
+  constructor(
+    public exhibitionService: ExhibitionService,
+    public userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.exhibitionSource.data = this.exhibitionService.getExhibitions();
@@ -38,10 +41,6 @@ export class ExhibitionsComponent implements OnInit {
   }
 
   doFilter(filterValue: string): void {
-
     this.exhibitionSource.filter = filterValue.trim().toLowerCase();
-
   }
-
-
 }
