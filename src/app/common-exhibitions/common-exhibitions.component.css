@@ -19,3 +19,7 @@ h1 {
   padding-top: 20px;
   margin: 0;
 }
+
+.exhibition-info h2 {
+  margin-bottom: auto;
+}

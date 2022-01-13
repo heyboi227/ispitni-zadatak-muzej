@@ -3,7 +3,7 @@
     font-size: 25px;
   }
   
-  .list-items a, #logo-buttons a {
+  .list-items a, #logo-buttons a, #cart a {
     text-decoration: none;
     color: black;
   }
@@ -12,6 +12,16 @@
   #logo-buttons a:hover,
   .active {
     font-weight: bold;
+  }
+
+  #cart a:hover {
+    color: #e75b1e;
+    
+  }
+
+  #cart mat-icon{
+    font-size: 30px;
+    margin-right: 40px;
   }
 
   .mat-toolbar {

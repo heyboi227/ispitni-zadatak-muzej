@@ -47,5 +47,6 @@ export class CommonExhibitionsComponent implements OnInit {
     this.exhibitionSource.filter = filterValue.trim().toLowerCase();
 
   }
+  
 
 }

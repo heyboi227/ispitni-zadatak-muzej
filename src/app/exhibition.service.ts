@@ -23,6 +23,9 @@ export interface Exhibition {
 
 export class ExhibitionService {
 
+  cartTotalPrice: number = 0;
+  exhibitionExists: boolean = false;
+  cartList: Array<Exhibition> = [];
 
   dummyExhibitionList: Array<Exhibition> = [
     {
@@ -113,6 +116,70 @@ export class ExhibitionService {
     return favoriteExhibitions;
   }
 
+  //Dodavanje proizvoda u korpu
+
+  addToCart(exhibition: Exhibition): void {
+
+
+
+    //Ako proizvod već postoji u korpi, stavlja se promenljiva da postoji u korpi na true
+
+    for (let i of this.cartList) {
+      if (i.id === exhibition.id) {
+        this.exhibitionExists = true;
+        alert("Postavka je već dodata u korpu.");
+        break;
+      } else {
+        this.exhibitionExists = false;
+      }
+    }
+
+    //Ako proizvod ne postoji u korpi, dodaje se u listu sa najosnovnijim atributima
+
+    if (!this.exhibitionExists) {
+      this.cartList.push({
+        id: exhibition.id,
+        exhibitType: exhibition.exhibitType,
+        title: exhibition.title,
+        price: exhibition.price,
+        timeToComplete: exhibition.timeToComplete,
+        description: exhibition.description,
+        category: exhibition.category,
+        numOfExhibits: exhibition.numOfExhibits,
+        numberOfPersonsRated: exhibition.numberOfPersonsRated,
+        rating: exhibition.rating
+      });
+      this.cartTotalPrice += exhibition.price;
+      alert("Proizvod je uspešno dodat u korpu!");
+    }
+
+
+
+    //Suma ukupne cene svih proizvoda u korpi, sa njihovim količinama (br. komada)
+
+  }
+
+
+  //Briše se pojedinačni komad proizvoda iz korpe, ukoliko postoji, i ukupna cena u korpi se umanjuje za isti komad
+
+  deleteFromCart(exhibition: Exhibition): void {
+    var prodIndex = this.cartList.indexOf(exhibition);
+    if (prodIndex > -1) {
+      this.cartList.splice(prodIndex, 1);
+    }
+
+    this.cartTotalPrice -= exhibition.price;
+
+  }
+
+
+
+  //Brisanje svih elemenata iz korpe
+
+  removeAll(): void {
+    this.cartList.length = 0;
+    this.cartTotalPrice = 0;
+  }
 
 }
 

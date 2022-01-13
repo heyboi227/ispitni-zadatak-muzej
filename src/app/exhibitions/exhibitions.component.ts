@@ -42,4 +42,6 @@ export class ExhibitionsComponent implements OnInit {
     this.exhibitionSource.filter = filterValue.trim().toLowerCase();
 
   }
+
+
 }

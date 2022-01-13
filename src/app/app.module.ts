@@ -29,6 +29,7 @@ import { ExhibitionService } from './exhibition.service';
 import { ExhibitionsComponent } from './exhibitions/exhibitions.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-exhibitions.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-ex
     SignupComponent,
     LoginComponent,
     ExhibitionsComponent,
-    FavoriteExhibitionsComponent
+    FavoriteExhibitionsComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

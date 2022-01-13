@@ -25,7 +25,6 @@
       <h2>{{ exhibition.title }}</h2>
       <ul>
         <li>Tip eksponata: {{ exhibition.exhibitType }}</li>
-        <li>Cena: {{ exhibition.price | number }} din.</li>
         <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
         <li>Opis: {{ exhibition.description }}</li>
         <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
@@ -36,9 +35,10 @@
           </star-rating>
           <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
         </li>
-
       </ul>
-      <button mat-raised-button color="primary" *ngIf="this.userService.isSignedIn">Dodaj postavku</button>
+      <h2>Cena: {{ exhibition.price | number }} din.</h2>
+      <button mat-raised-button color="primary" *ngIf="this.userService.isSignedIn"
+        (click)="this.exhibitionService.addToCart(exhibition)">Dodaj postavku</button>
     </section>
   </div>
 </div>
