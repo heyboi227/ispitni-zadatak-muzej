@@ -34,7 +34,8 @@
         (click)="this.exhibitionService.removeAll()">Ukloni sve</button>
       <h1 fxLayoutAlign="center center">Ukupna cena: {{ this.exhibitionService.cartTotalPrice | number }} din.
       </h1>
-      <button mat-raised-button color="primary" fxLayoutAlign="end" style="margin: 0 auto;">Rezerviši</button>
+      <button mat-raised-button color="primary" fxLayoutAlign="end" style="margin: 0 auto;"
+        (click)="createTour()">Rezerviši</button>
     </div>
   </div>
 </section>

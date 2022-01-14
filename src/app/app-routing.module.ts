@@ -5,6 +5,7 @@ import { ExhibitionsComponent } from './exhibitions/exhibitions.component';
 import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-exhibitions.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PlannerComponent } from './planner/planner.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
@@ -15,6 +16,8 @@ const routes: Routes = [
   { path: 'view', component: ExhibitionsComponent },
   { path: 'favorites', component: FavoriteExhibitionsComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'planner', component: PlannerComponent },
+
 ];
 
 @NgModule({

@@ -30,6 +30,7 @@ import { ExhibitionsComponent } from './exhibitions/exhibitions.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-exhibitions.component';
 import { CartComponent } from './cart/cart.component';
+import { PlannerComponent } from './planner/planner.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { CartComponent } from './cart/cart.component';
     ExhibitionsComponent,
     FavoriteExhibitionsComponent,
     CartComponent,
+    PlannerComponent,
   ],
   imports: [
     BrowserModule,

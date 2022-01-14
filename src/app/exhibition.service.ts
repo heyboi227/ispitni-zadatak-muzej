@@ -113,6 +113,7 @@ export class ExhibitionService {
 
   getFavoriteExhibitions(): Exhibition[] {
     let favoriteExhibitions: Array<Exhibition> = [];
+    if (this.userService.currentUser.favoriteTypes && this.userService.currentUser.favoriteTypes.length != 0) {
     this.userService.currentUser.favoriteTypes.forEach((type) => {
       this.dummyExhibitionList
         .filter((e) => e.exhibitType == type)
@@ -120,6 +121,7 @@ export class ExhibitionService {
           favoriteExhibitions.push(el);
         });
     });
+  }
     console.log(favoriteExhibitions);
     console.log(this.userService.currentUser);
     return favoriteExhibitions;
