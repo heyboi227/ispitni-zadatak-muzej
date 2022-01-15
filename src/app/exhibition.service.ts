@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ExhibitService } from './exhibit.service';
+import { Exhibit } from './exhibit';
 import { UserService } from './user.service';
 
 export interface Exhibition {
@@ -7,6 +7,7 @@ export interface Exhibition {
   category: 'Stalna postavka' | 'Privremena postavka';
   exhibitType: 'Knjige' | 'Novac' | 'Kulturno nasleđe' | 'Slike' | 'Dokumenti';
   numOfExhibits: number;
+  exhibits: Array<Exhibit>;
   price: number;
   timeToComplete: number;
   title: string;
@@ -21,6 +22,7 @@ export class ExhibitionService {
   cartTotalPrice: number = 0;
   exhibitionExists: boolean = false;
   cartList: Array<Exhibition> = [];
+  userChosenExhibitions: Array<Exhibition> = [];
 
   dummyExhibitionList: Array<Exhibition> = [
     {
@@ -28,6 +30,44 @@ export class ExhibitionService {
       category: 'Stalna postavka',
       exhibitType: 'Knjige',
       numOfExhibits: 0,
+      exhibits: [
+        {
+          id: 1,
+          exhibitType: 'Knjige',
+          price: 200,
+          timeToComplete: 5,
+          title: 'Beleške Svetog Save',
+          rating: 4.8,
+          numberOfPersonsRated: 13,
+          description:
+            'Sveti Sava bio je srpski princ, monah, iguman manastira Studenice, književnik, diplomata i prvi arhiepiskop autokefalne Srpske pravoslavne crkve.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 2,
+          exhibitType: 'Knjige',
+          price: 300,
+          timeToComplete: 7,
+          title: 'Beleške Stefana Prvovenčanog',
+          rating: 4.5,
+          numberOfPersonsRated: 8,
+          description:
+            'Stefan Prvovenčani bio je srpski srednjovekovni vladar i prvi krunisani kralj među Nemanjićima a zbog toga je dobio svoj opšteprihvaćeni nadimak Prvovenčani.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 3,
+          exhibitType: 'Knjige',
+          price: 350,
+          timeToComplete: 10,
+          title: 'Beleške Uroša Nejakog',
+          rating: 4.2,
+          numberOfPersonsRated: 6,
+          description:
+            'Stefan Uroš V, poznatiji kao Uroš Nejaki, bio je srpski car i poslednji vladar iz dinastije Nemanjića.',
+          countryOfOrigin: 'Srbija',
+        }
+      ],
       price: 0,
       timeToComplete: 0,
       title: 'Trilogija o Nemanjićima',
@@ -41,6 +81,32 @@ export class ExhibitionService {
       category: 'Privremena postavka',
       exhibitType: 'Kulturno nasleđe',
       numOfExhibits: 0,
+      exhibits: [
+        {
+          id: 4,
+          exhibitType: 'Kulturno nasleđe',
+          price: 200,
+          timeToComplete: 6,
+          title: 'Ogrlica Ane Dandolo',
+          rating: 4.7,
+          numberOfPersonsRated: 10,
+          description:
+            'Ana Dandolo je bila srpska kraljica, supruga kralja Stefana Prvovenčanog i majka budućeg kralja Stefana Uroša I.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 5,
+          exhibitType: 'Kulturno nasleđe',
+          price: 300,
+          timeToComplete: 4,
+          title: 'Vaza iz perioda Vinčanske kulture',
+          rating: 4.2,
+          numberOfPersonsRated: 5,
+          description:
+            'Vinčanska kultura predstavlja mlađeneolitsku i ranoeneolitsku kulturu Evrope.',
+          countryOfOrigin: 'Srbija',
+        }
+      ],
       price: 0,
       timeToComplete: 0,
       title: 'Nakit iz perioda Vinčanske kulture',
@@ -54,6 +120,44 @@ export class ExhibitionService {
       category: 'Stalna postavka',
       exhibitType: 'Novac',
       numOfExhibits: 0,
+      exhibits: [
+        {
+          id: 6,
+          exhibitType: 'Novac',
+          price: 150,
+          timeToComplete: 5,
+          title: 'Novčić iz perioda kraljevine Jugoslavije',
+          rating: 3.9,
+          numberOfPersonsRated: 8,
+          description:
+            'Kraljevina Jugoslavija je bila država u jugoistočnoj Evropi, koja je većim delom zahvatala Balkansko poluostrvo, a manjim Panonsku niziju.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 7,
+          exhibitType: 'Novac',
+          price: 800,
+          timeToComplete: 4,
+          title: 'Kovanica iz perioda Starčevačke kulture',
+          rating: 4.4,
+          numberOfPersonsRated: 12,
+          description:
+            'Starčevačka kultura je srednjoneolitska kultura koja se rasprostirala na centralnom Balkanu tokom 4. i 5. milenijuma p. n. e. Ime je dobila po lokalitetu Starčevo.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 8,
+          exhibitType: 'Novac',
+          price: 300,
+          timeToComplete: 4,
+          title: 'Novac iz srednjeovekovnog perioda',
+          rating: 4.0,
+          numberOfPersonsRated: 10,
+          description:
+            'Kneževina Srbija u ranom srednjem veku je naziv za prvu srpsku državu, kojom je vladala prva srpska dinastija Višeslavića.',
+          countryOfOrigin: 'Srbija',
+        }
+      ],
       price: 0,
       timeToComplete: 0,
       title: 'Novac kroz srpsku istoriju',
@@ -67,6 +171,32 @@ export class ExhibitionService {
       category: 'Privremena postavka',
       exhibitType: 'Dokumenti',
       numOfExhibits: 0,
+      exhibits: [
+        {
+          id: 9,
+          exhibitType: 'Dokumenti',
+          price: 250,
+          timeToComplete: 8,
+          title: 'Ljubavno pismo Jovana Dučića',
+          rating: 4.8,
+          numberOfPersonsRated: 8,
+          description:
+            'Jovan Dučić bio je srpski i jugoslovenski pesnik, pisac, diplomata i akademik. U diplomatiji je uspešno službovao preko tri decenije u nekoliko gradova.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 10,
+          exhibitType: 'Dokumenti',
+          price: 450,
+          timeToComplete: 5,
+          title: 'Testament Laze Kostića',
+          rating: 3.9,
+          numberOfPersonsRated: 5,
+          description:
+            'Lazar „Laza“ Kostić bio je srpski književnik, pesnik, doktor pravnih nauka, advokat, poliglota, novinar, dramski pisac i estetičar.',
+          countryOfOrigin: 'Srbija',
+        }
+      ],
       price: 0,
       timeToComplete: 0,
       title: 'Iz pera naših velikana',
@@ -78,21 +208,18 @@ export class ExhibitionService {
   ];
 
   constructor(
-    public exhibitService: ExhibitService,
     public userService: UserService
-  ) {}
+  ) { }
 
   sumParameters(): void {
     this.dummyExhibitionList.forEach((exhibition) => {
       let filteredExhibitPrices: Array<number> = [];
       let filteredExhibitTimesToComplete: Array<number> = [];
-      this.exhibitService.dummyExhibitList
-        .filter((exhibit) => exhibit.exhibitionId == exhibition.id)
-        .forEach((e) => {
-          filteredExhibitPrices.push(e.price);
-          filteredExhibitTimesToComplete.push(e.timeToComplete);
-        });
-      exhibition.numOfExhibits = filteredExhibitPrices.length;
+      exhibition.exhibits.forEach(e => {
+        filteredExhibitPrices.push(e.price);
+        filteredExhibitTimesToComplete.push(e.timeToComplete);
+      });
+      exhibition.numOfExhibits = exhibition.exhibits.length;
       exhibition.price = filteredExhibitPrices.reduce((a, b) => a + b, 0);
       exhibition.timeToComplete = filteredExhibitTimesToComplete.reduce(
         (a, b) => a + b,
@@ -114,17 +241,21 @@ export class ExhibitionService {
   getFavoriteExhibitions(): Exhibition[] {
     let favoriteExhibitions: Array<Exhibition> = [];
     if (this.userService.currentUser.favoriteTypes && this.userService.currentUser.favoriteTypes.length != 0) {
-    this.userService.currentUser.favoriteTypes.forEach((type) => {
-      this.dummyExhibitionList
-        .filter((e) => e.exhibitType == type)
-        .forEach((el) => {
-          favoriteExhibitions.push(el);
-        });
-    });
-  }
+      this.userService.currentUser.favoriteTypes.forEach((type) => {
+        this.dummyExhibitionList
+          .filter((e) => e.exhibitType == type)
+          .forEach((el) => {
+            favoriteExhibitions.push(el);
+          });
+      });
+    }
     console.log(favoriteExhibitions);
     console.log(this.userService.currentUser);
     return favoriteExhibitions;
+  }
+
+  getUserChosenExhibitions(): Exhibition[] {
+    return this.userChosenExhibitions;
   }
 
   //Dodavanje proizvoda u korpu
@@ -148,6 +279,7 @@ export class ExhibitionService {
       this.cartList.push({
         id: exhibition.id,
         exhibitType: exhibition.exhibitType,
+        exhibits: exhibition.exhibits,
         title: exhibition.title,
         price: exhibition.price,
         timeToComplete: exhibition.timeToComplete,

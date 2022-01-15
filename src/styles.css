@@ -25,3 +25,7 @@ body {
   width: 250px;
   height: 141px;
 }
+
+.mat-toolbar {
+  font-family: 'Alegreya', serif;
+}

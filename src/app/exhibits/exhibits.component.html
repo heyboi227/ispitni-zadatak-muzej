@@ -1,0 +1,37 @@
+<div style="background-color: white;">
+  <h1>EKSPONATI</h1>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width: auto; margin: auto 50px; padding: 30px;"
+    *ngFor="let exhibition of this.exhibitionSource.data">
+    <mat-toolbar>
+      <div class="nav-list" fxFlex fxLayoutAlign="start center">
+        <ul class="list-items" fxLayout="row" fxLayoutGap="35px">
+          <li><a routerLinkActive="active">{{ exhibition.title | uppercase }}</a></li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <section class="exhibition-info" fxLayout="column" fxLayoutAlign="center center"
+      *ngFor="let exhibit of exhibition.exhibits">
+      <img *ngIf="exhibit.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
+      <img *ngIf="exhibit.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
+      <img *ngIf="exhibit.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
+      <img *ngIf="exhibit.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
+      <img *ngIf="exhibit.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
+      <!-- Informacije o proizvodima -->
+      <h2>{{ exhibit.title }}</h2>
+      <ul>
+        <li>Tip eksponata: {{ exhibit.exhibitType }}</li>
+        <li>Opis: {{ exhibit.description }}</li>
+        <li>Procenjeno vreme obilaska: {{ exhibit.timeToComplete | number }} minut(a)</li>
+        <li>Zemlja porekla: {{ exhibit.countryOfOrigin }}</li>
+        <li fxLayoutAlign="center center" fxLayoutGap="5px">
+          <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
+          <star-rating [value]="exhibit.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
+            size="24px">
+          </star-rating>
+          <p>({{ exhibit.rating }} / 5) ({{ exhibit.numberOfPersonsRated }})</p>
+        </li>
+      </ul>
+      <h2>Cena: {{ exhibit.price | number }} din.</h2>
+    </section>
+  </div>
+</div>

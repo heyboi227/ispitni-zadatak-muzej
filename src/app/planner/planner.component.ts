@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { StarRatingComponent } from 'ng-starrating';
-import { ExhibitionService } from '../exhibition.service';
+import { Exhibition, ExhibitionService } from '../exhibition.service';
 import { Tour, TourService } from '../tour.service';
 import { UserService } from '../user.service';
 
@@ -16,7 +16,7 @@ import { UserService } from '../user.service';
 })
 export class PlannerComponent implements OnInit {
 
-  displayedColumns = ['id', 'name', 'status', 'description', 'price', 'actions', 'rating'];
+  displayedColumns = ['id', 'code', 'name', 'status', 'description', 'price', 'actions', 'rating'];
   tourSource = new MatTableDataSource<Tour>();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -62,6 +62,14 @@ export class PlannerComponent implements OnInit {
     var tourIndex = this.tourService.tourList.indexOf(tour);
     this.tourService.tourList.splice(tourIndex, 1);
     this.ngOnInit();
+  }
+
+  viewExhibits(tour: Tour): void {
+    this.exhibitionService.userChosenExhibitions = [];
+    tour.content.forEach(ex => {
+      this.exhibitionService.userChosenExhibitions.push(ex);
+    });
+    this.router.navigate(['/view-exhibits']);
   }
 
 }

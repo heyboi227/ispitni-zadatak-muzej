@@ -1,3 +1,6 @@
 h1 {
     margin-top: 5vh;
   }
+.buttons {
+  align-items: flex-start !important;
+}

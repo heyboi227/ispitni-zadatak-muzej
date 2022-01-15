@@ -13,7 +13,7 @@
         <div fxLayoutAlign="center center">
             <mat-form-field fxFlex=" 30%">
                 <input matInput type="text" (keyup)="doFilter($any($event.target).value)"
-                    placeholder="Filtriranje porudžbina">
+                    placeholder="Filtriranje obilazaka">
             </mat-form-field>
         </div>
 
@@ -63,12 +63,13 @@
 
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Akcije</mat-header-cell>
-                <mat-cell *matCellDef="let tour" fxLayoutGap="5px">
+                <mat-cell class="buttons" *matCellDef="let tour" fxLayout="column" fxLayoutAlign="flex-start center"
+                    fxLayoutGap="5px" style="margin-top: 5px;">
                     <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'">
                         <mat-icon>edit</mat-icon>
                     </button>
                     <button mat-raised-button color="warn" *ngIf="tour.status == 'U toku'"
-                        (click)="this.tourService.cancelTour(tour)">
+                        (click)="this.tourService.cancelTour(tour, this.exhibitionService.cartList)">
                         <mat-icon>cancel</mat-icon>
                     </button>
                     <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'"
@@ -81,6 +82,9 @@
                     <button *ngIf="!(tour.status == 'U toku')" mat-raised-button color="warn"
                         (click)="deleteTour(tour)">
                         <mat-icon>delete</mat-icon>
+                    </button>
+                    <button *ngIf="tour.status == 'U toku'" mat-raised-button color="warn" (click)="viewExhibits(tour)">
+                        Vidi eksponate
                     </button>
                 </mat-cell>
             </ng-container>

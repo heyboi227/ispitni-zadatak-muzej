@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ExhibitionService } from './exhibition.service';
+import { Exhibition, ExhibitionService } from './exhibition.service';
 
 export interface Tour {
   id: number;
   code: string;
-  content: Array<any>;
+  content: Array<Exhibition>;
   name: string;
   description: string;
   totalPrice: number;
@@ -24,7 +24,7 @@ export class TourService {
   }
 
   //Kreiranje novog obilaska
-  addTour(code: string, content: Array<any>, name: string, description: string, totalPrice: number, status: any, rating: number) {
+  addTour(code: string, content: Array<Exhibition>, name: string, description: string, totalPrice: number, status: any, rating: number) {
     var maxId: number = 0;
     this.tourList.forEach(tour => {
       if (maxId < tour.id) {
@@ -55,7 +55,8 @@ export class TourService {
   }
 
   //Otkazivanje porudžbine
-  cancelTour(tour: Tour): void {
+  cancelTour(tour: Tour, list: Array<any>): void {
     tour.status = "Otkazan";
+    list.length = 0;
   }
 }
