@@ -32,6 +32,7 @@ import { FavoriteExhibitionsComponent } from './favorite-exhibitions/favorite-ex
 import { CartComponent } from './cart/cart.component';
 import { PlannerComponent } from './planner/planner.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
+import { RatingService } from './rating.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { ExhibitsComponent } from './exhibits/exhibits.component';
     RatingModule,
     MatCheckboxModule,
   ],
-  providers: [UserService, ExhibitionService],
+  providers: [UserService, ExhibitionService, RatingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

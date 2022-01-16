@@ -27,7 +27,7 @@
         <li fxLayoutAlign="center center" fxLayoutGap="5px">
           <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
           <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
-            size="24px">
+            size="24px" (click)="this.ratingService.onRate($event, exhibition)">
           </star-rating>
           <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
         </li>

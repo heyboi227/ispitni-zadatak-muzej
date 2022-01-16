@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Exhibition, ExhibitionService } from '../exhibition.service';
+import { RatingService } from '../rating.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class FavoriteExhibitionsComponent implements OnInit {
 
   constructor(
     public exhibitionService: ExhibitionService,
-    public userService: UserService
+    public userService: UserService,
+    public ratingService: RatingService
   ) {}
 
   ngOnInit(): void {

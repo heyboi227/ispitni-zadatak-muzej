@@ -64,7 +64,7 @@
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Akcije</mat-header-cell>
                 <mat-cell class="buttons" *matCellDef="let tour" fxLayout="column" fxLayoutAlign="flex-start center"
-                    fxLayoutGap="5px" style="margin-top: 5px;">
+                    fxLayoutGap="5px" style="margin: 5px 0;">
                     <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'">
                         <mat-icon>edit</mat-icon>
                     </button>

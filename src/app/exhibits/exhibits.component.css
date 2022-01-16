@@ -24,3 +24,8 @@ img {
     margin-bottom: auto;
   }
   
+  .back-btn {
+    position: relative;
+    top: 57px;
+    left: 40px;
+  }

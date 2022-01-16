@@ -1,6 +1,11 @@
-<div style="background-color: white;">
-  <h1>EKSPONATI</h1>
-  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width: auto; margin: auto 50px; padding: 30px;"
+<div style="background-color: white; min-height: 300px;">
+  <div>
+    <button class="back-btn" mat-raised-button color="warn" (click)="backToPlanner()">
+      <mat-icon>arrow_back</mat-icon>Povratak na planer
+    </button>
+    <h1>EKSPONATI</h1>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" style="width: auto;"
     *ngFor="let exhibition of this.exhibitionSource.data">
     <mat-toolbar>
       <div class="nav-list" fxFlex fxLayoutAlign="start center">
@@ -26,7 +31,7 @@
         <li fxLayoutAlign="center center" fxLayoutGap="5px">
           <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
           <star-rating [value]="exhibit.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
-            size="24px">
+            size="24px" (click)="this.ratingService.onRate($event, exhibit)">
           </star-rating>
           <p>({{ exhibit.rating }} / 5) ({{ exhibit.numberOfPersonsRated }})</p>
         </li>

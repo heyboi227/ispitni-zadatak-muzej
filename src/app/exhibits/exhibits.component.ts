@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Exhibition, ExhibitionService } from '../exhibition.service';
+import { RatingService } from '../rating.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -18,7 +20,9 @@ export class ExhibitsComponent implements OnInit {
 
   constructor(
     public exhibitionService: ExhibitionService,
-    public userService: UserService
+    public userService: UserService,
+    private router: Router,
+    public ratingService: RatingService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +37,10 @@ export class ExhibitsComponent implements OnInit {
     if (this.exhibitionSource) {
       this.exhibitionSource.disconnect();
     }
+  }
+
+  backToPlanner(): void {
+    this.router.navigate(['/planner']);
   }
 
 }
