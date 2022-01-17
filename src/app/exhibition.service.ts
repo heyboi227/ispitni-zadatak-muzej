@@ -14,6 +14,7 @@ export interface Exhibition {
   rating: number;
   numberOfPersonsRated: number;
   description: string;
+  comments: Array<any>;
 }
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export interface Exhibition {
 export class ExhibitionService {
   cartTotalPrice: number = 0;
   exhibitionExists: boolean = false;
-  cartList: Array<Exhibition> = [];
+  cartList: Array<any> = [];
   userChosenExhibitions: Array<Exhibition> = [];
 
   dummyExhibitionList: Array<Exhibition> = [
@@ -68,6 +69,23 @@ export class ExhibitionService {
           countryOfOrigin: 'Srbija',
         }
       ],
+      comments: [
+        {
+          username: 'itme536',
+          rating: 4,
+          comment: "Nije lose iskreno"
+        },
+        {
+          username: 'tinatina99',
+          rating: 5,
+          comment: "Odlicna postavka!!!"
+        },
+        {
+          username: 'heyboi227',
+          rating: 3,
+          comment: "Ima i boljih postavki..."
+        },
+      ],
       price: 0,
       timeToComplete: 0,
       title: 'Trilogija o Nemanjićima',
@@ -93,7 +111,9 @@ export class ExhibitionService {
           description:
             'Ana Dandolo je bila srpska kraljica, supruga kralja Stefana Prvovenčanog i majka budućeg kralja Stefana Uroša I.',
           countryOfOrigin: 'Srbija',
+          
         },
+
         {
           id: 5,
           exhibitType: 'Kulturno nasleđe',
@@ -106,6 +126,24 @@ export class ExhibitionService {
             'Vinčanska kultura predstavlja mlađeneolitsku i ranoeneolitsku kulturu Evrope.',
           countryOfOrigin: 'Srbija',
         }
+
+      ],
+      comments: [
+        {
+          username: 'milicab',
+          rating: 5,
+          comment: "Fantasticni eksponati!"
+        },
+        {
+          username: 'uros89',
+          rating: 1,
+          comment: "Zaobidjite ovu postavku, ima mnogo boljih"
+        },
+        {
+          username: 'marija123',
+          rating: 3,
+          comment: "Interesantno ali to moze bolje..."
+        },
       ],
       price: 0,
       timeToComplete: 0,
@@ -158,6 +196,7 @@ export class ExhibitionService {
           countryOfOrigin: 'Srbija',
         }
       ],
+      comments: [],
       price: 0,
       timeToComplete: 0,
       title: 'Novac kroz srpsku istoriju',
@@ -196,6 +235,23 @@ export class ExhibitionService {
             'Lazar „Laza“ Kostić bio je srpski književnik, pesnik, doktor pravnih nauka, advokat, poliglota, novinar, dramski pisac i estetičar.',
           countryOfOrigin: 'Srbija',
         }
+      ],
+      comments: [
+        {
+          username: 'marijaperic',
+          rating: 5,
+          comment: "Odusevljena sam"
+        },
+        {
+          username: 'milanpetrovic',
+          rating: 4,
+          comment: "Dobra postavka interesantni eksponati, skuplja je malo..."
+        },
+        {
+          username: 'losmilosmi',
+          rating: 1,
+          comment: "Dosadno..."
+        },
       ],
       price: 0,
       timeToComplete: 0,
@@ -286,8 +342,6 @@ export class ExhibitionService {
         description: exhibition.description,
         category: exhibition.category,
         numOfExhibits: exhibition.numOfExhibits,
-        numberOfPersonsRated: exhibition.numberOfPersonsRated,
-        rating: exhibition.rating,
       });
       this.cartTotalPrice += exhibition.price;
       alert('Proizvod je uspešno dodat u korpu!');

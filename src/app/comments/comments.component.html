@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Komentari za postavku: {{this.receivedData.title}}</h1>
+<section style="min-width: 600px;">
+    <h3 *ngIf="this.receivedData.comments.length == 0" style="font-family: 'Roboto';">Trenutno nema komentara za ovu
+        postavku</h3>
+    <mat-dialog-content *ngFor="let comment of this.receivedData.comments">
+        <mat-card>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                {{comment.username}}
+                <star-rating [value]="comment.rating" [totalstars]="5" [readonly]="true" checkedcolor="#e75b1e"
+                    uncheckedcolor="gray" size="24px">
+                </star-rating>
+            </div>
+            <p>{{comment.comment}}</p>
+        </mat-card>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">Zatvori</button>
+    </mat-dialog-actions>
+</section>

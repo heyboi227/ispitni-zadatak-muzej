@@ -39,6 +39,8 @@ export class TourService {
     this.tourList.push(tour);
 
     this.router.navigate(['/planner']);
+    this.exhibitionService.cartList.length = 0;
+    this.exhibitionService.cartTotalPrice = 0;
 
     return tour;
   }

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { StarRatingComponent } from 'ng-starrating';
+import { CommentsComponent } from './comments/comments.component';
+import { Exhibition } from './exhibition.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RatingService {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   onRate($event: { oldValue: number, newValue: number, starRating: StarRatingComponent }, item: any): void {
 
@@ -22,6 +25,17 @@ export class RatingService {
     //a samim tim i novoj vrednosti simboličkog predstavljanja ocene (pomoću zvezda)
     item.rating = parseFloat((ratingSum / item.numberOfPersonsRated).toFixed(2));
     $event.starRating.value = item.rating;
+
+  }
+
+  showComments(exhibition: Exhibition): void {
+    //Otvaranje dijaloga
+    const dialogRef = this.dialog.open(CommentsComponent, {
+      data: {
+        title: exhibition.title,
+        comments: exhibition.comments
+      }
+    });
 
   }
 }

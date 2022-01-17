@@ -33,6 +33,7 @@ import { CartComponent } from './cart/cart.component';
 import { PlannerComponent } from './planner/planner.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { RatingService } from './rating.service';
+import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RatingService } from './rating.service';
     CartComponent,
     PlannerComponent,
     ExhibitsComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
