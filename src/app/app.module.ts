@@ -34,6 +34,7 @@ import { PlannerComponent } from './planner/planner.component';
 import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { RatingService } from './rating.service';
 import { CommentsComponent } from './comments/comments.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CommentsComponent } from './comments/comments.component';
     PlannerComponent,
     ExhibitsComponent,
     CommentsComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

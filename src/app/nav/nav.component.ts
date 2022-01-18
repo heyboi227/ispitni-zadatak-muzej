@@ -16,7 +16,7 @@ export class NavComponent implements OnInit {
     public userService: UserService,
     private router: Router,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   openProfile(userId: number): void {
     this.profileOpened = true;
@@ -40,12 +40,20 @@ export class NavComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   loggedInCheck(): void {
     if (!this.userService.isSignedIn) {
       alert('Morate biti ulogovani da biste dodali novi oglas!');
       this.router.navigate(['/login']);
     }
+  }
+
+  toFooter(): void {
+    document.getElementById("footer-container").scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest"
+    });
   }
 }

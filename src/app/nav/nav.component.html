@@ -4,7 +4,7 @@
       <li><a routerLink="/home" routerLinkActive="active">POČETNA</a></li>
       <li><a routerLink="/view" routerLinkActive="active">POSTAVKE</a></li>
       <li><a routerLink="/about" routerLinkActive="active">O NAMA</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">KONTAKT</a></li>
+      <li><a style="cursor: pointer;" (click)="toFooter()">KONTAKT</a></li>
     </ul>
   </div>
   <div *ngIf="!this.userService.isSignedIn" class="nav-list" fxFlex fxLayoutAlign="center center">
