@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, CacheInterceptor } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LogoComponent } from './logo/logo.component';
 import { NavComponent } from './nav/nav.component';
@@ -35,6 +35,10 @@ import { ExhibitsComponent } from './exhibits/exhibits.component';
 import { RatingService } from './rating.service';
 import { CommentsComponent } from './comments/comments.component';
 import { AboutComponent } from './about/about.component';
+import { EditTourComponent } from './edit-tour/edit-tour.component';
+import { ShowExhibitsComponent } from './show-exhibits/show-exhibits.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TourService } from './tour.service';
 
 @NgModule({
   declarations: [
@@ -54,6 +58,8 @@ import { AboutComponent } from './about/about.component';
     ExhibitsComponent,
     CommentsComponent,
     AboutComponent,
+    EditTourComponent,
+    ShowExhibitsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +79,7 @@ import { AboutComponent } from './about/about.component';
     RatingModule,
     MatCheckboxModule,
   ],
-  providers: [UserService, ExhibitionService, RatingService],
+  providers: [UserService, ExhibitionService, RatingService, TourService, { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

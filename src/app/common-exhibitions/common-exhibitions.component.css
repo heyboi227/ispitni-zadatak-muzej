@@ -10,6 +10,11 @@ h3 {
   margin-bottom: 0;
 }
 
+.show-exhibits:hover {
+  color: #e75b1e;
+  cursor: pointer;
+}
+
 li {
   list-style-type: none;
 }

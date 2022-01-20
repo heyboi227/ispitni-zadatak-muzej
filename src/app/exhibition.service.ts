@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Exhibit } from './exhibit';
+import { ShowExhibitsComponent } from './show-exhibits/show-exhibits.component';
 import { UserService } from './user.service';
 
 export interface Exhibition {
@@ -111,7 +113,7 @@ export class ExhibitionService {
           description:
             'Ana Dandolo je bila srpska kraljica, supruga kralja Stefana Prvovenčanog i majka budućeg kralja Stefana Uroša I.',
           countryOfOrigin: 'Srbija',
-          
+
         },
 
         {
@@ -188,7 +190,7 @@ export class ExhibitionService {
           exhibitType: 'Novac',
           price: 300,
           timeToComplete: 4,
-          title: 'Novac iz srednjeovekovnog perioda',
+          title: 'Novac iz srednjevekovnog perioda',
           rating: 4.0,
           numberOfPersonsRated: 10,
           description:
@@ -261,10 +263,50 @@ export class ExhibitionService {
       description:
         'Zavirite u misli naših najvećih pesnika počev od Dučića do Ljubivoja Ršumovića.',
     },
+    {
+      id: 5,
+      category: 'Stalna postavka',
+      exhibitType: 'Slike',
+      numOfExhibits: 0,
+      exhibits: [
+        {
+          id: 11,
+          exhibitType: 'Slike',
+          price: 750,
+          timeToComplete: 8,
+          title: 'Sava Šumanović-Žuti potok',
+          rating: 4.9,
+          numberOfPersonsRated: 7,
+          description:'Sava Šumanović bio je srpski slikar. Šumanović je jedan od najznačajnijih slikara srpske umetnosti 20. veka.',
+          countryOfOrigin: 'Srbija',
+        },
+        {
+          id: 12,
+          exhibitType: 'Slike',
+          price: 550,
+          timeToComplete: 5,
+          title: 'Paja Jovanović-Seoba srba',
+          rating: 5.0,
+          numberOfPersonsRated: 12,
+          description:
+            'Pavle Paja Jovanović bio je srpski slikar i tipičan predstavnik akademskog realizma. Najbliži mu je po mnogo čemu slikar Uroš Predić, iako su bili takmaci na umetničkom polju.',
+          countryOfOrigin: 'Srbija',
+        }
+      ],
+      comments: [],
+      price: 0,
+      timeToComplete: 0,
+      title: 'Junaci naše slikovne istorije',
+      rating: 4.37,
+      numberOfPersonsRated: 10,
+      description:
+        'Najlepša dela srpskih slikara.',
+    },
   ];
 
   constructor(
-    public userService: UserService
+    public userService: UserService,
+    private dialog: MatDialog
   ) { }
 
   sumParameters(): void {
@@ -314,6 +356,16 @@ export class ExhibitionService {
     return this.userChosenExhibitions;
   }
 
+  viewExhibits(exhibition: Exhibition): void {
+        //Otvaranje dijaloga
+        const dialogRef = this.dialog.open(ShowExhibitsComponent, {
+          data: {
+            exhibits: exhibition.exhibits,
+            exhibitionTitle: exhibition.title
+          }
+        });
+  }
+
   //Dodavanje proizvoda u korpu
 
   addToCart(exhibition: Exhibition): void {
@@ -344,7 +396,7 @@ export class ExhibitionService {
         numOfExhibits: exhibition.numOfExhibits,
       });
       this.cartTotalPrice += exhibition.price;
-      alert('Proizvod je uspešno dodat u korpu!');
+      alert('Postavka je uspešno dodata u korpu!');
     }
 
     //Suma ukupne cene svih proizvoda u korpi, sa njihovim količinama (br. komada)

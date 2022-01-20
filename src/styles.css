@@ -10,10 +10,13 @@ body {
     background-repeat: no-repeat; */
 }
 
+ul {
+  padding-inline-start: 0;
+}
 
 .exhibition-info {
   width: 400px;
-  height: 550px;
+  height: 620px;
   padding: 20px;
   margin: 20px;
   border-radius: 70px;

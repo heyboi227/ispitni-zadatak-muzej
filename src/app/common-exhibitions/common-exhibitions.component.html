@@ -24,12 +24,15 @@
         <li>Broj eksponata: {{ exhibition.numOfExhibits | number}}</li>
         <li>Opis: {{ exhibition.description }}</li>
         <li>Procenjeno vreme obilaska: {{ exhibition.timeToComplete| number }} minut(a)</li>
-        <li fxLayoutAlign="center center" fxLayoutGap="5px">
+        <li style="margin-top: 15px;" fxLayoutAlign="center center" fxLayoutGap="5px" fxLayout="column">
+          <a class="show-exhibits" (click)="this.exhibitionService.viewExhibits(exhibition)">Eksponati</a>
           <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
-          <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
-            size="24px" (rate)="this.ratingService.onRate($event, exhibition)">
-          </star-rating>
-          <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
+              size="24px" (rate)="this.ratingService.onRate($event, exhibition)">
+            </star-rating>
+            <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
+          </div>
         </li>
       </ul>
       <button mat-raised-button (click)="this.ratingService.showComments(exhibition)">Komentari</button>

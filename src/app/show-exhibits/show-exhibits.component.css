@@ -1,0 +1,6 @@
+img {
+    width: 200px;
+    height: 113px;
+    border-radius: 35px;
+    transition: width 200ms linear, height 200ms linear;
+  }

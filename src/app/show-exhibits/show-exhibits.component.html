@@ -1,0 +1,18 @@
+<h1 mat-dialog-title fxLayoutAlign="center center">Eksponati za izložbu: {{ this.recievedData.title }}</h1>
+<mat-dialog-content>
+    <mat-card *ngFor="let exhibit of this.recievedData.exhibits">
+        <img *ngIf="exhibit.exhibitType == 'Knjige' " src="../../assets/knjige.jpg" alt="knjige">
+        <img *ngIf="exhibit.exhibitType == 'Novac' " src="../../assets/novac.jpg" alt="knjige">
+        <img *ngIf="exhibit.exhibitType == 'Kulturno nasleđe' " src="../../assets/nakit.jpg" alt="knjige">
+        <img *ngIf="exhibit.exhibitType == 'Slike' " src="../../assets/slika.jpg" alt="knjige">
+        <img *ngIf="exhibit.exhibitType == 'Dokumenti' " src="../../assets/akt.jpg" alt="knjige">
+        <!-- Informacije o proizvodima -->
+        <h2>{{ exhibit.title }}</h2>
+        <ul>
+            <li>Tip eksponata: {{ exhibit.exhibitType }}</li>
+            <li>Procenjeno vreme obilaska: {{ exhibit.timeToComplete | number }} minut(a)</li>
+        </ul>
+        <h2>Cena: {{ exhibit.price | number }} din.</h2>
+    </mat-card>
+    <button mat-raised-button color="warn" [mat-dialog-close]="true">Zatvori</button>
+</mat-dialog-content>

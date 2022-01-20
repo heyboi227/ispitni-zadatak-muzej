@@ -1,107 +1,90 @@
 <section style="height: auto;">
-    <div fxLayout="column" fxLayoutAlign="center center">
-        <h1 style=" font-weight: bold; font-size: 40px;">PLANER</h1>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <h1 style=" font-weight: bold; font-size: 40px;">PLANER</h1>
+  </div>
+  <!-- Tekst koji se javlja kada ne postoji nijedna porudžbina napravljena od strane korisnika -->
+  <div *ngIf="this.tourService.tourList.length == 0" fxLayout="row wrap"
+    style="width: 100%; height: inherit; padding: 12.1vh 0;">
+    <h2 fxFlex fxLayoutAlign="center center">Trenutno ne postoji nijedan
+      obilazak u planeru.</h2>
+  </div>
+  <!-- Tabelarni ispis podataka o porudžbinama -->
+  <div *ngIf="!(this.tourService.tourList.length == 0)">
+    <div fxLayoutAlign="center center" fxLayout="column" fxLayoutGap="10px">
+      <mat-form-field fxFlex=" 30%">
+        <input matInput type="text" (keyup)="doFilter($any($event.target).value)" placeholder="Filtriranje obilazaka">
+      </mat-form-field>
+      <p>Ovde možete izmeniti ime i opis Vaših kreiranih obilazaka.</p>
     </div>
-    <!-- Tekst koji se javlja kada ne postoji nijedna porudžbina napravljena od strane korisnika -->
-    <div *ngIf="this.tourService.tourList.length == 0" fxLayout="row wrap"
-        style="width: 100%; height: inherit; padding: 12.1vh 0;">
-        <h2 fxFlex fxLayoutAlign="center center">Trenutno ne postoji nijedan
-            obilazak u planeru.</h2>
-    </div>
-    <!-- Tabelarni ispis podataka o porudžbinama -->
-    <div *ngIf="!(this.tourService.tourList.length == 0)">
-        <div fxLayoutAlign="center center">
-            <mat-form-field fxFlex=" 30%">
-                <input matInput type="text" (keyup)="doFilter($any($event.target).value)"
-                    placeholder="Filtriranje obilazaka">
-            </mat-form-field>
-        </div>
 
-        <mat-table style="background-color: rgba(0, 0, 0, 0);" [dataSource]="tourSource" matSort>
+    <mat-table style="background-color: rgba(0, 0, 0, 0);" [dataSource]="tourSource" matSort>
 
-            <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>ID obilaska</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    {{ tour.id }}
-                </mat-cell>
-            </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ime obilaska</mat-header-cell>
+        <mat-cell *matCellDef="let tour">
+          {{ tour.name }}
+        </mat-cell>
+      </ng-container>
 
-            <ng-container matColumnDef="code">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Šifra obilaska</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    {{ tour.code }}
-                </mat-cell>
-            </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Opis obilaska</mat-header-cell>
+        <mat-cell *matCellDef="let tour">
+          {{ tour.description }}
+        </mat-cell>
+      </ng-container>
 
-            <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Ime obilaska</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    {{ tour.name }}
-                </mat-cell>
-            </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
+        <mat-cell *matCellDef="let tour">
+          {{ tour.status }}
+        </mat-cell>
+      </ng-container>
 
-            <ng-container matColumnDef="description">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Opis obilaska</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    {{ tour.description }}
-                </mat-cell>
-            </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Cena</mat-header-cell>
+        <mat-cell *matCellDef="let tour">
+          {{ tour.totalPrice | number }} din.
+        </mat-cell>
+      </ng-container>
 
-            <ng-container matColumnDef="status">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Status</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    {{ tour.status }}
-                </mat-cell>
-            </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Akcije</mat-header-cell>
+        <mat-cell class="buttons" *matCellDef="let tour" fxLayout="column" fxLayoutAlign="flex-start center"
+          fxLayoutGap="5px" style="margin: 5px 0;">
+          <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'"
+            (click)="this.tourService.editTour(tour)">
+            <mat-icon>edit</mat-icon> Izmeni
+          </button>
+          <button mat-raised-button color="warn" *ngIf="tour.status == 'U toku'"
+            (click)="this.tourService.cancelTour(tour, this.exhibitionService.cartList)">
+            <mat-icon>cancel</mat-icon> Otkaži
+          </button>
+          <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'"
+            (click)="this.tourService.completeTour(tour, this.exhibitionService.cartList)">
+            <mat-icon>done</mat-icon> Završi
+          </button>
+          <button *ngIf="!(tour.status == 'U toku')" mat-raised-button color="warn" (click)="deleteTour(tour)">
+            <mat-icon>delete</mat-icon> Obriši
+          </button>
+          <button *ngIf="tour.status == 'U toku'" mat-raised-button color="warn" (click)="viewExhibits(tour)">
+            Vidi eksponate
+          </button>
+        </mat-cell>
+      </ng-container>
 
-            <ng-container matColumnDef="price">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Cena</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    {{ tour.totalPrice | number }} din.
-                </mat-cell>
-            </ng-container>
+      <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ocena</mat-header-cell>
+        <mat-cell *matCellDef="let tour">
+          <star-rating *ngIf="tour.status == 'Završen'" [value]="tour.rating" [totalstars]="5" checkedcolor="#e75b1e"
+            uncheckedcolor="gray" size="24px" (rate)="onRate($event, tour)">
+          </star-rating>
+        </mat-cell>
+      </ng-container>
 
-            <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Akcije</mat-header-cell>
-                <mat-cell class="buttons" *matCellDef="let tour" fxLayout="column" fxLayoutAlign="flex-start center"
-                    fxLayoutGap="5px" style="margin: 5px 0;">
-                    <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-raised-button color="warn" *ngIf="tour.status == 'U toku'"
-                        (click)="this.tourService.cancelTour(tour, this.exhibitionService.cartList)">
-                        <mat-icon>cancel</mat-icon>
-                    </button>
-                    <button mat-raised-button color="primary" *ngIf="tour.status == 'U toku'"
-                        (click)="this.tourService.completeTour(tour, this.exhibitionService.cartList)">
-                        <mat-icon>done</mat-icon>
-                    </button>
-                    <button mat-raised-button color="primary" *ngIf="tour.status == 'Završen'" (click)="retour(tour)">
-                        <mat-icon>cached</mat-icon>
-                    </button>
-                    <button *ngIf="!(tour.status == 'U toku')" mat-raised-button color="warn"
-                        (click)="deleteTour(tour)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button *ngIf="tour.status == 'U toku'" mat-raised-button color="warn" (click)="viewExhibits(tour)">
-                        Vidi eksponate
-                    </button>
-                </mat-cell>
-            </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let rows; columns: displayedColumns;"></mat-row>
 
-            <ng-container matColumnDef="rating">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Ocena</mat-header-cell>
-                <mat-cell *matCellDef="let tour">
-                    <star-rating *ngIf="tour.status == 'Završen'" [value]="tour.rating" [totalstars]="5"
-                        checkedcolor="#e75b1e" uncheckedcolor="gray" size="24px" (rate)="onRate($event, tour)">
-                    </star-rating>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let rows; columns: displayedColumns;"></mat-row>
-
-        </mat-table>
-        <mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[5, 8, 10]"></mat-paginator>
-    </div>
+    </mat-table>
+    <mat-paginator style="background-color: rgba(0, 0, 0, 0);" [pageSizeOptions]="[5, 8, 10]"></mat-paginator>
+  </div>
 </section>

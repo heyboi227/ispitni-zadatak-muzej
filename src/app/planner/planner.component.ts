@@ -16,7 +16,7 @@ import { UserService } from '../user.service';
 })
 export class PlannerComponent implements OnInit {
 
-  displayedColumns = ['id', 'code', 'name', 'status', 'description', 'price', 'actions', 'rating'];
+  displayedColumns = ['name', 'status', 'description', 'price', 'actions', 'rating'];
   tourSource = new MatTableDataSource<Tour>();
 
   @ViewChild(MatSort) sort: MatSort;
@@ -38,18 +38,6 @@ export class PlannerComponent implements OnInit {
 
   doFilter(filterValue: string): void {
     this.tourSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  //Ponovno kreiranje obilaska na osnovu istih izložbi
-  retour(tour: Tour): void {
-    this.exhibitionService.cartList = [...tour.content];
-    // const dialogRef = this.dialog.open(TourconfirmComponent, {
-    //   data: {
-    //     deliveryTime: tour.deliveryTime
-    //   }
-    // });
-    this.exhibitionService.cartTotalPrice = tour.totalPrice;
-    this.router.navigate(['/cart']);
   }
 
   //Ocena pojedinačne porudžbine
