@@ -29,13 +29,12 @@
         <li>Procenjeno vreme obilaska: {{ exhibit.timeToComplete | number }} minut(a)</li>
         <li>Zemlja porekla: {{ exhibit.countryOfOrigin }}</li>
         <li style="margin-top: 5px;" fxLayoutAlign="center center" fxLayoutGap="5px" fxLayout="column">
-          <a (click)="this.exhibitionService.viewExhibits(exhibition)">Eksponati</a>
           <!-- Broj zvezdica se popunjava prema izračunatoj aritmetičkoj sredini ocena zadatih od strane korisnika-->
           <div fxLayout="row" fxLayoutAlign="center center">
-            <star-rating [value]="exhibition.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
-              size="24px" (rate)="this.ratingService.onRate($event, exhibition)">
+            <star-rating [value]="exhibit.rating" [totalstars]="5" checkedcolor="#e75b1e" uncheckedcolor="gray"
+              size="24px" (rate)="this.ratingService.onRate($event, exhibit)">
             </star-rating>
-            <p>({{ exhibition.rating }} / 5) ({{ exhibition.numberOfPersonsRated }})</p>
+            <p>({{ exhibit.rating }} / 5) ({{ exhibit.numberOfPersonsRated }})</p>
           </div>
         </li>
       </ul>
