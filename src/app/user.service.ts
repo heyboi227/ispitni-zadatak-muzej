@@ -104,7 +104,6 @@ export class UserService {
       telephone,
       favoriteTypes,
     };
-    console.log(user);
 
     UserService.dummyUserList.push(user);
 
