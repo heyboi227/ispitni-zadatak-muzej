@@ -12,7 +12,7 @@
   "dependencies": {
     "@angular/animations": "~22.0.0",
     "@angular/cdk": "^22.0.0",
-    "@angular/common": "~21.2.15",
+    "@angular/common": "~22.0.1",
     "@angular/compiler": "~21.2.4",
     "@angular/core": "~22.0.0",
     "@angular/flex-layout": "^15.0.0-beta.42",
