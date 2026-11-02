@@ -18,7 +18,7 @@
     "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "~22.2.4",
     "@angular/material": "^22.2.4",
-    "@angular/platform-browser": "~22.2.3",
+    "@angular/platform-browser": "~22.2.4",
     "@angular/platform-browser-dynamic": "~22.2.4",
     "@angular/router": "~22.2.4",
     "ng-starrating": "^1.0.20",
